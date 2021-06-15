@@ -1,0 +1,37 @@
+﻿@model IEnumerable<EscolaApp.Models.Area>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h1>Áreas</h1>
+</div>
+
+<p>
+    @Html.ActionLink("Adicionar Área", "Create", null, new { @class = "my-class" })
+</p>
+<table class="table custom">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Designação)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Designação)
+        </td>
+        <td>
+            @Html.ActionLink("Editar área", "Edit", new { id=item.IdArea }, new { @class = "my-class" }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.IdArea }, new { @class = "my-class" }) |
+            @Html.ActionLink("Apagar área", "Delete", new { id=item.IdArea }, new { @class = "my-class" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,56 @@
+﻿@model EscolaApp.Models.UFCD
+
+@{
+    ViewBag.Title = "Details";
+}
+<h3>UFCD - @Model.Designação</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Designação)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Designação)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalhes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalhes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duração)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duração)
+        </dd>
+
+        <dt>
+            Criação
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            Ultima atualização
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdUFCD }, new { @class = "my-class" }) |
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "my-class" })
+</p>

@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EscolaApp" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost;Initial Catalog=EscolaApp;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="EscolaAppConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Alunos" Member="Alunos">
+    <Type Name="Aluno">
+      <Column Name="IdAluno" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nome" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Apelido" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DataNascimento" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="NIF" Type="System.String" DbType="NVarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Association Name="Aluno_Alunos_Email" Member="Alunos_Emails" ThisKey="IdAluno" OtherKey="IdAluno" Type="Alunos_Email" />
+      <Association Name="Aluno_Alunos_Telefone" Member="Alunos_Telefones" ThisKey="IdAluno" OtherKey="IdAluno" Type="Alunos_Telefone" />
+      <Association Name="Aluno_Inscrito" Member="Inscritos" ThisKey="IdAluno" OtherKey="IdAluno" Type="Inscrito" />
+      <Association Name="Aluno_Nota" Member="Notas" ThisKey="IdAluno" OtherKey="IdAluno" Type="Nota" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UFCDs" Member="UFCDs">
+    <Type Name="UFCD">
+      <Column Name="IdUFCD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Designação" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Detalhes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Duração" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="UFCD_Nota" Member="Notas" ThisKey="IdUFCD" OtherKey="IdUFCD" Type="Nota" />
+      <Association Name="UFCD_Referenciai" Member="Referenciais" ThisKey="IdUFCD" OtherKey="IdUFCD" Type="Referenciai" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Alunos_Emails" Member="Alunos_Emails">
+    <Type Name="Alunos_Email">
+      <Column Name="IdContactoMail" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdAluno" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdEmail" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="Aluno_Alunos_Email" Member="Aluno" ThisKey="IdAluno" OtherKey="IdAluno" Type="Aluno" IsForeignKey="true" />
+      <Association Name="Email_Alunos_Email" Member="Email" ThisKey="IdEmail" OtherKey="IdEmail" Type="Email" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Alunos_Telefones" Member="Alunos_Telefones">
+    <Type Name="Alunos_Telefone">
+      <Column Name="IdContactoTelefone" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdAluno" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdTelefone" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="Aluno_Alunos_Telefone" Member="Aluno" ThisKey="IdAluno" OtherKey="IdAluno" Type="Aluno" IsForeignKey="true" />
+      <Association Name="Telefone_Alunos_Telefone" Member="Telefone" ThisKey="IdTelefone" OtherKey="IdTelefone" Type="Telefone" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Areas" Member="Areas">
+    <Type Name="Area">
+      <Column Name="IdArea" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Designação" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Detalhes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="Area_Curso" Member="Cursos" ThisKey="IdArea" OtherKey="IdArea" Type="Curso" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cursos" Member="Cursos">
+    <Type Name="Curso">
+      <Column Name="IdCurso" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdArea" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Designação" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Detalhes" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="Curso_Referenciai" Member="Referenciais" ThisKey="IdCurso" OtherKey="IdCurso" Type="Referenciai" />
+      <Association Name="Curso_Turma" Member="Turmas" ThisKey="IdCurso" OtherKey="IdCurso" Type="Turma" />
+      <Association Name="Area_Curso" Member="Area" ThisKey="IdArea" OtherKey="IdArea" Type="Area" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Emails" Member="Emails">
+    <Type Name="Email">
+      <Column Name="IdEmail" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Email" Member="Email1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="Email_Alunos_Email" Member="Alunos_Emails" ThisKey="IdEmail" OtherKey="IdEmail" Type="Alunos_Email" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Inscritos" Member="Inscritos">
+    <Type Name="Inscrito">
+      <Column Name="IdInscricao" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdTurma" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdAluno" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="Aluno_Inscrito" Member="Aluno" ThisKey="IdAluno" OtherKey="IdAluno" Type="Aluno" IsForeignKey="true" />
+      <Association Name="Turma_Inscrito" Member="Turma" ThisKey="IdTurma" OtherKey="IdTurma" Type="Turma" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Notas" Member="Notas">
+    <Type Name="Nota">
+      <Column Name="IdNota" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdAluno" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdUFCD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nota" Member="Nota1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="Aluno_Nota" Member="Aluno" ThisKey="IdAluno" OtherKey="IdAluno" Type="Aluno" IsForeignKey="true" />
+      <Association Name="UFCD_Nota" Member="UFCD" ThisKey="IdUFCD" OtherKey="IdUFCD" Type="UFCD" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Referenciais" Member="Referenciais">
+    <Type Name="Referenciai">
+      <Column Name="IdReferencial" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdCurso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdUFCD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="Curso_Referenciai" Member="Curso" ThisKey="IdCurso" OtherKey="IdCurso" Type="Curso" IsForeignKey="true" />
+      <Association Name="UFCD_Referenciai" Member="UFCD" ThisKey="IdUFCD" OtherKey="IdUFCD" Type="UFCD" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Telefones" Member="Telefones">
+    <Type Name="Telefone">
+      <Column Name="IdTelefone" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Telefone" Member="Telefone1" Type="System.String" DbType="NVarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="Telefone_Alunos_Telefone" Member="Alunos_Telefones" ThisKey="IdTelefone" OtherKey="IdTelefone" Type="Alunos_Telefone" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Turmas" Member="Turmas">
+    <Type Name="Turma">
+      <Column Name="IdTurma" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdCurso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Designação" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="DataInicio" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="DataFim" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="CreateDate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="Turma_Inscrito" Member="Inscritos" ThisKey="IdTurma" OtherKey="IdTurma" Type="Inscrito" />
+      <Association Name="Curso_Turma" Member="Curso" ThisKey="IdCurso" OtherKey="IdCurso" Type="Curso" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<EscolaApp.Models.Turma>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h1>Turmas</h1>
+</div>
+
+<p>
+    @Html.ActionLink("Adicionar Turma", "Create", null, new { @class = "my-class" })
+</p>
+<table class="table custom">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.IdCurso)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Designação)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFim)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastUpdate)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.IdCurso)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Designação)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFim)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdate)
+        </td>*@
+        <td>
+            @Html.ActionLink("Editar turma", "Edit", new { id=item.IdTurma }, new { @class = "my-class" }) |
+            @Html.ActionLink("Detalhes da turma", "Details", new { id=item.IdTurma }, new { @class = "my-class" }) |
+            @Html.ActionLink("Apagar turma", "Delete", new { id=item.IdTurma }, new { @class = "my-class" })
+        </td>
+    </tr>
+}
+
+</table>

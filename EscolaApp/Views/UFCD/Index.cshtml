@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EscolaApp.Models.UFCD>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h1>UFCDs</h1>
+</div>
+
+<p>
+    @Html.ActionLink("Adicionar UFCD", "Create", null, new { @class = "my-class" })
+</p>
+<table class="table custom">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Designação)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Detalhes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Duração)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Designação)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Detalhes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duração)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdUFCD }, new { @class = "my-class" }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.IdUFCD }, new { @class = "my-class" }) |
+            @Html.ActionLink("Remover", "Delete", new { id=item.IdUFCD }, new { @class = "my-class" })
+        </td>
+    </tr>
+}
+
+</table>

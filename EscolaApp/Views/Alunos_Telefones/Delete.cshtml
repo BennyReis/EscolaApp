@@ -1,0 +1,55 @@
+﻿@model EscolaApp.Models.Alunos_Telefone
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Remover contacto Aluno - @Model.Aluno</h3>
+
+<h4>Tem a certeza que quer remover?</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal custom">
+        <dt>
+            Aluno
+        </dt>
+
+        <dd>
+            @Model.Aluno
+        </dd>
+
+        <dt>
+            Contacto
+        </dt>
+
+        <dd>
+            @Model.Telefone.Telefone1
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Remover" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Details", "Alunos", new { id = Model.IdAluno }, new { @class = "my-class" })
+        </div>
+    }
+</div>

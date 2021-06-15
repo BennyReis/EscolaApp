@@ -1,0 +1,138 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+    color: #a2b5f9
+}
+.dt, dd {
+    color: #1dcfc6
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+h1 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+    color: #1dcfc6;
+}
+h2 {
+    color: #ad77ef
+}
+h3 {
+    color: #ad77ef
+}
+h4 {
+    color: #ad77ef
+}
+
+
+p.custom {
+    color: #ffe007;
+}
+tr.custom{
+    color: #ad77ef
+}
+tr{
+    color: #1dcfc6;
+}
+
+/*actionlink color*/
+a.my-class {  
+    color: #ffe007;
+}
+
+li.conteudo {
+    color: #1dcfc6;
+}
+li.head {
+    color: lightpink
+}
+
+/*.navbar-inverse .navbar-nav > li > a {
+    color: grey !important;
+}*/
+.navbar-inverse {
+    border-color: #ad77ef;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus,
+.navbar-inverse a.navbar-brand:hover,
+.navbar-inverse a.navbar-brand:focus {
+    color: #ffe007;
+}
+
+
+hr {
+    border-top-color: #ad77ef
+}
+
+.table.custom > thead:first-child > tr:first-child > th,
+.table.custom > thead > tr > th {
+    color: #a2b5f9
+}
+.table.custom > thead:first-child > tr:first-child > th,
+.table.custom > thead > tr > th,
+.table.custom > tbody > tr > td,
+.table.custom > tbody > tr > th {
+    border-color: #ad77ef;
+}
+
+
+
+
+.form-horizontal.custom {
+    color: #a2b5f9;
+
+}
+span.custom {
+    color: lightpink;
+}
+.list-control {
+    border-color: #ad77ef;
+    color: #1dcfc6;
+    background-color: #2c2f33;
+}
+.form-control {
+    border-color: #ad77ef;
+    /*border-block-color: #ad77ef;*/
+    font-weight: 600;
+    color: #1dcfc6;
+    background-color: #2c2f33;
+}
+/*.form-control.details {
+    width:max-content;
+    width:200px;
+    height:80px;
+}*/
+.btn-default {
+    font-weight: 600;
+    color: #1dcfc6;
+    border-color: grey;
+    background-color: #222125;
+}
+
+
+
+/* td.custom {
+    border-top-color: #ad77ef
+}
+*/
+

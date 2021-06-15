@@ -1,0 +1,81 @@
+﻿@model EscolaApp.Models.Turma 
+
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3>Detalhes da turma - @Model.Designação</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal custom">
+        <dt>
+            Curso
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Curso.Designação) | @Html.ActionLink("Ver Curso", "Details", "Cursos", new { id = Model.IdCurso }, new { @class = "my-class" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Designação)
+            
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Designação)
+        </dd>
+
+        <dt>
+            Data de inicio
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicio)
+        </dd>
+
+        <dt>
+            Data de fim
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFim)
+        </dd>
+
+        <dt>
+            Criação da turma
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            Ultima atualização
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.IdTurma }, new { @class = "my-class" }) |
+        @Html.ActionLink("Voltar", "Index", null, new { @class = "my-class" })
+    </p>
+    <h3>Alunos</h3>
+    <ul>
+        @foreach (var item in Model.Inscritos)
+            {
+                <li><span></span>@Html.ActionLink($"{item.Aluno}", "Details", "Alunos", new { id = item.IdAluno }, new { @class = "my-class" })</li>
+            }
+    </ul>
+
+    
+</div>
+<p>
+    @*NOTA, o new routeValue, tem que ser de acordo com os GET e POST, os nomes dos parametros pedidos tem que ser coicindentes!!!*@
+    @Html.ActionLink("Adicionar alunos", "CreateViaTurma", "Inscritos", new { idTurma = Model.IdTurma }, new { @class = "my-class" }) |
+    @Html.ActionLink("Retirar alunos", "DeleteViaTurma", "Inscritos", new { idTurma = Model.IdTurma }, new { @class = "my-class" }) 
+</p>

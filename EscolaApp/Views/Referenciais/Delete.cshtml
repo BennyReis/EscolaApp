@@ -1,0 +1,55 @@
+﻿@model EscolaApp.Models.Referenciai
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Retirar UFCD do Curso @Model.Curso.Designação</h3>
+
+<h4>Tem a certeza que quer remover?</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal custom">
+        <dt>
+            Curso
+        </dt>
+
+        <dd>
+            @Model.Curso.Designação
+        </dd>
+
+        <dt>
+            UFCD
+        </dt>
+
+        <dd>
+            @Model.UFCD.Designação
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Remover" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Details", "Cursos", new { id = Model.IdCurso }, new { @class = "my-class" })
+        </div>
+    }
+</div>

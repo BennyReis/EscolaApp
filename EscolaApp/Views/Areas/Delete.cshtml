@@ -1,0 +1,55 @@
+﻿@model EscolaApp.Models.Area
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Remover Área - @Model.Designação</h3>
+
+<h4>Tem a certeza que quer remover ?</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Designação)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Designação)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalhes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalhes)
+        </dd>
+
+        <dt>
+            Data de criação
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            Ultima atualização
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Remover" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "my-class" })
+        </div>
+    }
+</div>

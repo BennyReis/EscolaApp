@@ -1,0 +1,87 @@
+﻿@model EscolaApp.Models.Curso
+
+@{
+    ViewBag.Title = "Detalhes do curso";
+}
+
+<h3>Detalhes do Curso - @Model.Designação</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Área
+        </dt>
+
+        <dd>
+            @Model.Area.Designação
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Designação)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Designação)
+        </dd>
+
+        <dt>
+            Observações
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalhes)
+        </dd>
+        <dt>
+            Duração
+        </dt>
+        <dd>
+            @ViewBag.Duracao horas
+        </dd>
+
+    </dl>
+
+    <h4>Referencial  </h4>
+    <h5>@Html.ActionLink("Adicionar UFCDs", "CreateViaCurso", "Referenciais", new { idCurso = Model.IdCurso }, new { @class = "my-class" })</h5>
+    <hr />
+
+    <ul>
+        @foreach (var item in Model.Referenciais)
+        {
+            <li class="head">
+                <span>@item.UFCD.IdUFCD</span> -
+                <span>@item.UFCD.Designação</span> -
+                <span>@item.UFCD.Duração horas</span><br />
+                <span>@Html.ActionLink($"Detalhes", "Details", "UFCD", new { id = item.IdUFCD }, new { @class = "my-class" })</span> |
+                <span>@Html.ActionLink($"Editar", "Edit", "Referenciais", new { id = item.IdReferencial }, new { @class = "my-class" })</span> |
+                <span>@Html.ActionLink($"Remover ", "Delete", "Referenciais", new { id = item.IdReferencial }, new { @class = "my-class" })</span>
+            </li>
+            <hr />
+        }
+    </ul>
+    <br />
+    <h4>Turmas</h4>
+    @Html.ActionLink("Adicionar Turma", "CreateViaCurso", "Turmas", new { idCurso = Model.IdCurso }, new { @class = "my-class" })
+    <hr />
+    <ul>
+        @foreach (var item in Model.Turmas)
+        {
+            
+            <li class="head">
+                <span>@item.Designação</span>
+                <span>@Html.ActionLink($"Detalhes", "Details", "Turmas", new { id = item.IdTurma }, new { @class = "my-class" })</span> |
+                <span>@Html.ActionLink($"Editar", "Edit", "Turmas", new { id = item.IdTurma }, new { @class = "my-class" })</span> |
+                <span>@Html.ActionLink($"Remover ", "Delete", "Turmas", new { id = item.IdTurma }, new { @class = "my-class" })</span>
+            </li>
+            <hr />
+        }
+    </ul>
+
+</div>
+<br />
+<hr />
+<p style="color:lightpink">
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdCurso }, new { @class = "my-class" }) |
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "my-class" })
+    @*@Html.ActionLink("Referencial", "CreateViaCurso","Referenciais", new { idCurso = Model.IdCurso }, new { @class = "my-class" })*@
+</p>

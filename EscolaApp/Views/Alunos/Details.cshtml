@@ -1,0 +1,161 @@
+﻿@model EscolaApp.Models.Aluno
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h4>Detalhes de Aluno - @Model</h4>
+
+<div class="custom">
+    <br>
+    <p>
+        @Html.ActionLink("Voltar", "Index", null, new { @class = "my-class" })
+    </p>
+    <hr />
+    <dl class="dl-horizontal ">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apelido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apelido)
+        </dd>
+
+        <dt>
+            Data de Nascimento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NIF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIF)
+        </dd>
+
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastUpdate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastUpdate)
+            </dd>*@
+
+    </dl>
+
+    <hr />
+    <p>@Html.ActionLink($"Editar aluno {Model} ", "Edit", new { id = Model.IdAluno }, new { @class = "my-class" })</p>
+    <hr />
+
+    <h3>Contactos</h3>
+    <span class="custom">@Html.ActionLink("Adicionar email", "Create", "Alunos_Emails", new { idAluno = Model.IdAluno }, new { @class = "my-class" }) |</span>
+    <span class="custom">@Html.ActionLink("Adicionar telefone", "Create", "Alunos_Telefones", new { idAluno = Model.IdAluno }, new { @class = "my-class" })</span>
+
+    <ul>
+        <h4>Emails</h4>
+        @foreach (var item in Model.Alunos_Emails)
+        {
+            <li class="head">
+                <span>@item.Email.Email1</span>
+                <span>@Html.ActionLink($"Editar email ", "Edit", "Alunos_Emails", new { idAlunosMail = item.IdContactoMail }, new { @class = "my-class" })</span>|
+                <span>@Html.ActionLink($"Apagar email ", "Delete", "Alunos_Emails", new { idAlunosMail = item.IdContactoMail }, new { @class = "my-class" })</span>
+            </li>
+        }
+    </ul>
+    <ul>
+        <h4>Telemovel</h4>
+        @foreach (var item in Model.Alunos_Telefones)
+        {
+            <li class="head">
+                <span>@item.Telefone.Telefone1</span>
+                <span>@Html.ActionLink($"Editar contacto ", "Edit", "Alunos_Telefones", new { idAlunosTel = item.IdContactoTelefone }, new { @class = "my-class" })</span>|
+                <span>@Html.ActionLink($"Apagar contacto ", "Delete", "Alunos_Telefones", new { idAlunosTel = item.IdContactoTelefone }, new { @class = "my-class" })</span>
+            </li>
+        }
+    </ul>
+    <hr />
+    <h3>Turmas</h3>
+    <p>@Html.ActionLink("Adicionar a uma turma", "CreateViaAlunos", "Inscritos", new { idAluno = Model.IdAluno }, new { @class = "my-class" })</p>
+    @foreach (var item in Model.Inscritos)
+    {
+        
+
+        <hr />
+        <ul>
+            <li class="head">
+                <h4>@item.Turma.Designação</h4>
+                <span>@Html.ActionLink("Ver turma", "Details", "Turmas", new { id = item.IdTurma }, new { @class = "my-class" })</span> |
+                <span>@Html.ActionLink("Editar inscrição", "Edit", "Inscritos", new { id = item.IdInscricao }, new { @class = "my-class" })</span>
+                @if (Model.Inscritos != null)
+                {
+                    <hr />
+                    <h4>Notas</h4>
+                    <p>
+                        @Html.ActionLink("Adicionar nota", "CreateViaAlunos", "Notas", new { idAluno = Model.IdAluno, idTurma = item.IdTurma }, new { @class = "my-class" })
+                    </p>
+                    <ul>
+                        @foreach (var nota in Model.Notas)
+                        {
+
+                            //foi uma luta, para chegar a esta conclusão
+                            //verifica se uma determinada ufcd se encontra no referencial do curso da turma...
+                            var curso = item.Turma.Curso.Referenciais.Where(i => i.IdUFCD == nota.IdUFCD).Select(s => s.IdUFCD);
+                            if (curso.Contains(nota.IdUFCD))
+                            {
+                                <li class="conteudo">
+                                    <span class="custom">@nota</span>
+                                    <span class="custom">@Html.ActionLink("Editar", "Edit", "Notas", new { id = nota.IdNota }, new { @class = "my-class" }) | </span>
+                                    <span class="custom">@Html.ActionLink("Remover", "Delete", "Notas", new { id = nota.IdNota }, new { @class = "my-class" })</span>
+                                </li>
+                            }
+
+                        }
+                    </ul>
+                    <br />
+
+                }
+            </li>
+        </ul>
+    }
+    @*<h3>Notas</h3>
+        <p>
+            @Html.ActionLink("Adicionar nota", "CreateViaAlunos", "Notas", new { id = Model.IdAluno}, null)
+        </p>*@
+    @*<ul>
+            @foreach (var item in Model.Notas)
+            {
+                <li>
+                    <span>@item</span>
+                    @Html.ActionLink("Editar nota", "Edit", "Notas", new { id = item.IdNota }, null) |
+                    @Html.ActionLink("Detalhes da nota", "Details", "Notas", new { id = item.IdNota }, null)
+                </li>
+            }
+        </ul>*@
+</div>
+<br>
+<p>
+
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "my-class" })
+    
+</p>

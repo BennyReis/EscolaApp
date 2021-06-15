@@ -1,0 +1,45 @@
+﻿@model EscolaApp.Models.Inscrito
+
+@{
+    ViewBag.Title = "DeleteViaTurma";
+}
+
+<h3>Remover alunos da turma @ViewBag.Turma.Designação</h3>
+<h2>@ViewBag.Erro</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <hr />
+        <dl class="dl-horizontal custom">
+            <dt>
+                Turma
+            </dt>
+
+            <dd>
+                @ViewBag.Turma.Designação
+            </dd>
+            <hr>
+            <dt>
+                Aluno
+            </dt>
+
+            <dd>
+                @Html.ListBox("IdAluno", null, new { @class = "list-control" })
+                @Html.ValidationMessageFor(model => model.IdAluno, "", new { @class = "text-danger" })
+            </dd>
+        </dl>
+
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Remover" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Details", "Turmas", new { id = ViewBag.Turma.IdTurma }, new { @class = "my-class" })
+        </div>
+
+    </div>
+}
+
+
+

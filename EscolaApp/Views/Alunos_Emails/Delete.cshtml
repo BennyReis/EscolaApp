@@ -1,0 +1,55 @@
+﻿@model EscolaApp.Models.Alunos_Email
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Remover email Aluno - @Model.Aluno</h3>
+
+<h4>Tem a certeza que quer remover?</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Aluno
+        </dt>
+
+        <dd>
+            @Model.Aluno
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Model.Email.Email1
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Apagar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Details", "Alunos", new { id = Model.IdAluno }, new { @class = "my-class" })
+        </div>
+    }
+</div>

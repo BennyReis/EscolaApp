@@ -1,0 +1,71 @@
+﻿@model EscolaApp.Models.Turma
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Remover turma - @Model.Designação</h3>
+
+<h4>Tem a certeza que quer remover?</h4>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Curso
+        </dt>
+
+        <dd>
+            @ViewBag.Curso
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Designação)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Designação)
+        </dd>
+
+        <dt>
+            Data de inicio
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInicio)
+        </dd>
+
+        <dt>
+            Data de fim
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataFim)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Remover" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "my-class" })
+        </div>
+    }
+</div>

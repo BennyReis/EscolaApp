@@ -1,0 +1,58 @@
+﻿@model EscolaApp.Models.Nota
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes da nota </h2>
+
+<div>
+    <h4>Aluno - @Model.Aluno<br>UFCD - @Model.UFCD</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Aluno
+        </dt>
+
+        <dd>
+            @Model.Aluno
+        </dd>
+
+        <dt>
+            UFCD
+        </dt>
+
+        <dd>
+            @Model.UFCD
+        </dd>
+
+        <dt>
+            Nota
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nota1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdNota }) |
+    @Html.ActionLink("Voltar", "Details", "Alunos", new { id = Model.IdAluno}, null)
+</p>

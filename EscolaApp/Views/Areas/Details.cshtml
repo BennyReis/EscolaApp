@@ -1,0 +1,49 @@
+﻿@model EscolaApp.Models.Area
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3>Detalhes de Área de formação - @Model.Designação</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal custom">
+        <dt>
+            @Html.DisplayNameFor(model => model.Designação)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Designação)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalhes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalhes)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Data de criação")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ultima atualização")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdArea }, new { @class = "my-class" }) |
+    @Html.ActionLink("Voltar", "Index", null, new { @class = "my-class" })
+</p>
