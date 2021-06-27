@@ -265,10 +265,11 @@ namespace EscolaApp.Controllers
 
         // POST: Inscritos/Delete/5
         /// <summary>
-        /// 
+        /// remoção de alunos de uma turma
+        /// atraves de uma lista de alunos, sao todos verificados, e apos verificar todos os alunos da lista sao adicionados a uma lista a eliminar
         /// </summary>
-        /// <param name="idTurma"></param>
-        /// <param name="form"></param>
+        /// <param name="idTurma">turma na qual os alunos estao inscritos</param>
+        /// <param name="form">lista de alunos a remover</param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult DeleteViaTurma(int? idTurma, FormCollection form)

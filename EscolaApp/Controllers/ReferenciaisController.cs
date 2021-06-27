@@ -37,7 +37,7 @@ namespace EscolaApp.Controllers
 
         // GET: Referenciais/Create
         /// <summary>
-        /// 
+        /// Poderia-se verificar se a ufcd nao está ja associada ao curso
         /// </summary>
         /// <param name="idCurso"></param>
         /// <returns></returns>
@@ -109,6 +109,7 @@ namespace EscolaApp.Controllers
         // GET: Referenciais/Edit/5
         /// <summary>
         /// O curso pode mudar uma UFCD, a UFCD não pode mudar de curso!
+        /// Passagem de todas as ufcds
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -125,17 +126,6 @@ namespace EscolaApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.IdUFCD = new SelectList(db.UFCDs.OrderBy(u => u.Designação), "IdUFCD", "Designação");
-            //ViewBag.IdUFCD = db.UFCDs.Select(u => new SelectListItem()
-            //{
-            //    Value = u.IdUFCD.ToString(),
-            //    Text = u.Designação
-            //});
-            //ViewBag.IdUFCD = from Referenciais in db.Referenciais
-            //               join Curso in db.Cursos
-            //               on Referenciais.IdCurso equals Curso.IdCurso
-            //               join UFCD in db.UFCDs
-            //               on Referenciais.IdUFCD equals UFCD.IdUFCD
-            //               select UFCD;
 
             return View(referencial);
         }
@@ -188,22 +178,6 @@ namespace EscolaApp.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
             Referenciai refe = db.Referenciais.FirstOrDefault(r => r.IdReferencial == id);
-            //var pesquisa = from Curso in db.Cursos
-            //               join Referenciai in db.Referenciais
-            //               on Curso.IdCurso equals Referenciai.IdCurso
-            //               join UFCD in db.UFCDs
-            //               on Referenciai.IdUFCD equals UFCD.IdUFCD
-            //               where Curso.IdCurso == id
-            //               select UFCD;
-
-            //ViewBag.IdAluno = pesquisa.Select(u => new SelectListItem()
-            //{
-            //    Value = u.IdUFCD.ToString(),
-            //    Text = u.Designação
-            //});
-
-            //Curso curso = db.Cursos.FirstOrDefault(c => c.IdCurso == id);
-            //ViewBag.Curso = curso;
             return View(refe);
         }
 
@@ -218,14 +192,6 @@ namespace EscolaApp.Controllers
         public ActionResult Delete(int id)
         {
             Referenciai aApagar = db.Referenciais.FirstOrDefault(r => r.IdReferencial == id);
-
-            //if (collection["IdUFCD"] == null)
-            //{
-            //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
-            //}
-
-            
-            //string[] IdsUFCD = collection["IdUFCD"].Split(',');
             try
             {
                 // TODO: Add insert logic here

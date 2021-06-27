@@ -31,12 +31,6 @@ namespace EscolaApp.Controllers
             }
 
             Turma turma = db.Turmas.FirstOrDefault(t => t.IdTurma== id);
-
-            //Curso cursoTurma = db.Cursos.FirstOrDefault(c => c.IdCurso == turma.IdCurso);
-            //ViewBag.Curso = cursoTurma.Designação;
-
-            //Esta complicado passar os alunos da turma
-
             return View(turma);
         }
 

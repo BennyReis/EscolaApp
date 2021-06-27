@@ -52,13 +52,7 @@ namespace EscolaApp.Controllers
             {
                 ViewBag.Duracao = "Ainda não tem UFCDs associadas";
             }
-            //Area area = db.Areas.FirstOrDefault(a => a.IdArea == curso.IdArea);
 
-            ////utilização de um view bag para passar a informação sobre a que área o curso pertence
-            //if (area != null)
-            //{
-            //    ViewBag.Area = area.Designação;
-            //}
 
             return View(curso);
         }

@@ -10,24 +10,11 @@ namespace EscolaApp.Controllers
     public class Alunos_EmailsController : Controller
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
-        // GET: Alunos_Emails
-        public ActionResult Index()
-        {
-            return RedirectToAction("Index", "Home");
-        }
-
-        // GET: Alunos_Emails/Details/5
-        public ActionResult Details(int? id)
-        {
-
-            return View();
-        }
 
         // GET: Alunos_Emails/Create
         /// <summary>
-        /// Executado a partir dos detalhes do aluno.
-        /// 
-        /// </summary>
+        /// Executado a partir dos detalhes do aluno. 
+        /// É criado ja um objeto email de modo a fazer a relação com o aluno na view, sem a necessidade de viewbags ---> Pode ser uma melhoria noutros controladores
         /// <param name="idAluno"></param>
         /// <returns></returns>
         public ActionResult Create(int? idAluno)
@@ -90,7 +77,13 @@ namespace EscolaApp.Controllers
         }
 
         // GET: Alunos_Emails/Edit/5
-        public ActionResult Edit(int? idAlunosMail, Email aAlterar)
+        /// <summary>
+        /// Edição do registo mail a partir da relação mail - aluno.
+        /// Passagem para a view da relação aluno-email atual
+        /// </summary>
+        /// <param name="idAlunosMail">relação aluno-email</param>
+        /// <returns></returns>
+        public ActionResult Edit(int? idAlunosMail)
         {
             if (idAlunosMail == null)
             {
@@ -110,6 +103,13 @@ namespace EscolaApp.Controllers
         }
 
         // POST: Alunos_Emails/Edit/5
+        /// <summary>
+        /// Edição do registo mail a partir da relação mail - aluno.
+        /// Verificação do conteudo do mail de forma a nao existirem mails repetidos
+        /// </summary>
+        /// <param name="idAlunosMail">relação aluno-email</param>
+        /// <param name="aEditar">relação passada pela view, com o email novo</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(int idAlunosMail, Alunos_Email aEditar)
         {
@@ -168,6 +168,11 @@ namespace EscolaApp.Controllers
         }
 
         // POST: Alunos_Emails/Delete/5
+        /// <summary>
+        ///  verificação dos dados, remoção da base de dados do mail e da relação aluno-mail
+        /// </summary>
+        /// <param name="idAlunosMail">relação aluno-email</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Delete(int idAlunosMail)
         {

@@ -83,6 +83,11 @@ namespace EscolaApp.Controllers
         }
 
         // GET: Alunos/Edit/5
+        /// <summary>
+        /// verificaçao da existencia de um aluno com aquele id
+        /// </summary>
+        /// <param name="id">id de aluno</param>
+        /// <returns></returns>
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -100,6 +105,14 @@ namespace EscolaApp.Controllers
         }
 
         // POST: Alunos/Edit/5
+        /// <summary>
+        /// verificação da existencia do aluno
+        /// atribuição dos novos dados
+        /// alteração na base de dados
+        /// </summary>
+        /// <param name="id">id de aluno atual</param>
+        /// <param name="aEditar">novos atributos do aluno</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(int id, Aluno aEditar)
         {
@@ -149,6 +162,12 @@ namespace EscolaApp.Controllers
         }
 
         // POST: Alunos/Delete/5
+        /// <summary>
+        /// verificação da existencia do aluno
+        /// remoção do aluno da base de dados
+        /// </summary>
+        /// <param name="id">id de aluno a apagar</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Delete(int id)
         {

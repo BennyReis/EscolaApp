@@ -165,29 +165,12 @@ namespace EscolaApp.Controllers
                 return HttpNotFound();
             }
             ;
-            //Aluno aluno = db.Alunos.FirstOrDefault(a => a.IdAluno == aEditar.IdAluno);
-            //UFCD ufcd = db.UFCDs.FirstOrDefault(u => u.IdUFCD == aEditar.IdUFCD);
-
-            // verificar se a nota já existe, exceto a propria, para evitar ter dois ou mais registos do mesmo aluno para a mesma ufcd
-            //var duplicatedUfcds = db.Notas.Any(nota => nota.IdNota != id && ufcd.IdUFCD == nota.IdUFCD && aluno.IdAluno == nota.IdAluno);
-
-            //foreach (var nota in db.Notas)
-            //{
-            //    if (nota.IdNota != id && ufcd.IdUFCD == nota.IdUFCD && aluno.IdAluno == nota.IdAluno)
-            //    {
-            //        repetidos = true;
-            //        break;
-            //    }
-            //}
-
 
             try
             {
                 // TODO: Add update logic here
-                if (ModelState.IsValid /*&& (aluno != null && ufcd != null) && !duplicatedUfcds*/)
+                if (ModelState.IsValid)
                 {
-                    //notaEditada.IdAluno = aEditar.IdAluno;
-                    //notaEditada.IdUFCD = aEditar.IdUFCD;
                     notaEditada.Nota1 = aEditar.Nota1;
                     notaEditada.LastUpdate = DateTime.Now;
                     db.SubmitChanges();

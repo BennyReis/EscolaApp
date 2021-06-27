@@ -10,25 +10,13 @@ namespace EscolaApp.Controllers
     public class Alunos_TelefonesController : Controller
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
-        // GET: Alunos_Emails
-        public ActionResult Index()
-        {
-            return RedirectToAction("Index", "Home");
-        }
 
-        // GET: Alunos_Emails/Details/5
-        public ActionResult Details(int? id)
-        {
-
-            return View();
-        }
-
-        // GET: Alunos_Emails/Create
+        // GET: Alunos_Telefones/Create
         /// <summary>
         /// Executado a partir dos detalhes do aluno.
-        /// 
+        /// Objeto passado para a view de forma a poder utilizar a relação aluno-telefone em vez de viewbags
         /// </summary>
-        /// <param name="idAluno"></param>
+        /// <param name="idAluno">Aluno associado ao nr de telefone a criar</param>
         /// <returns></returns>
         public ActionResult Create(int? idAluno)
         {
@@ -48,15 +36,16 @@ namespace EscolaApp.Controllers
 
         // POST: Alunos_Emails/Create
         /// <summary>
-        /// Recebe o email, cria o registo da relação aluno email e cria tambem o registo de email
+        /// Recebe o nr de telefone, e a relação aluno-telefone passada para a view
+        /// O telefone é adicionado a base de dados antes da relação. Pode se melhorar de forma a nao ter que ir a base de dados duas vezes
         /// </summary>
-        /// <param name="idAluno"></param>
-        /// <param name="telefone"></param>
-        /// <param name="acriar"></param>
+        /// <param name="idAluno">Aluno</param>
+        /// <param name="relacao">relação aluno-telefone</param>
+        /// <param name="acriar">nr telefone</param>
         /// <param name="collection"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Create(int idAluno, Alunos_Telefone telefone, Telefone acriar, FormCollection collection)
+        public ActionResult Create(int idAluno, Alunos_Telefone relacao, Telefone acriar, FormCollection collection)
         {
             if (collection == null)
             {
@@ -74,11 +63,11 @@ namespace EscolaApp.Controllers
                     db.Telefones.InsertOnSubmit(acriar);
                     db.SubmitChanges();
 
-                    telefone.IdAluno = idAluno;
-                    telefone.IdTelefone = acriar.IdTelefone;
-                    telefone.CreateDate = DateTime.Now;
-                    telefone.LastUpdate = DateTime.Now;
-                    db.Alunos_Telefones.InsertOnSubmit(telefone);
+                    relacao.IdAluno = idAluno;
+                    relacao.IdTelefone = acriar.IdTelefone;
+                    relacao.CreateDate = DateTime.Now;
+                    relacao.LastUpdate = DateTime.Now;
+                    db.Alunos_Telefones.InsertOnSubmit(relacao);
                     db.SubmitChanges();
                 }
                 return RedirectToAction("Details", "Alunos", new { id = idAluno });
@@ -110,6 +99,13 @@ namespace EscolaApp.Controllers
         }
 
         // POST: Alunos_Emails/Edit/5
+        /// <summary>
+        /// Edição do registo telefone a partir da relação telefone - aluno.
+        /// Verificação do conteudo do nr de telefone de forma a nao existirem numeros repetidos
+        /// </summary>
+        /// <param name="idAlunosTel"></param>
+        /// <param name="aEditar"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(int idAlunosTel, Alunos_Telefone aEditar)
         {
@@ -148,6 +144,11 @@ namespace EscolaApp.Controllers
         }
 
         // GET: Alunos_Emails/Delete/5
+        /// <summary>
+        /// Passagem para a view da relação aluno-telefone e respetivo aluno e nr de telefone
+        /// </summary>
+        /// <param name="idAlunosTel">relação aluno-telefone</param>
+        /// <returns></returns>
         public ActionResult Delete(int? idAlunosTel)
         {
             if (idAlunosTel == null)
@@ -168,6 +169,11 @@ namespace EscolaApp.Controllers
         }
 
         // POST: Alunos_Emails/Delete/5
+        /// <summary>
+        /// verificação dos dados, remoção da base de dados do telefone e da relação aluno-telefone
+        /// </summary>
+        /// <param name="idAlunosTel"> Relação aluno-telefone </param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Delete(int idAlunosTel)
         {

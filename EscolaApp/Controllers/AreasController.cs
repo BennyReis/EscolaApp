@@ -10,6 +10,7 @@ namespace EscolaApp.Controllers
     public class AreasController : Controller
     {
         DataClasses1DataContext db = new DataClasses1DataContext();
+
         // GET: Area
         public ActionResult Index()
         {
