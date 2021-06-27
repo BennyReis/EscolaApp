@@ -49,6 +49,20 @@
         </dd>
 
     </dl>
+    <h4>Cursos que contém esta UFCD</h4>
+    <ul>
+        @foreach (var item in Model.Referenciais)
+        {
+
+            <li class="head">
+                <span>@item.Curso.Designação</span> <br />
+                <span>@Html.ActionLink($"Detalhes", "Details", "Cursos", new { id = item.Curso.IdCurso }, new { @class = "my-class" })</span>
+            </li>
+            <hr />
+        }
+    </ul>
+
+
 </div>
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.IdUFCD }, new { @class = "my-class" }) |

@@ -8,60 +8,52 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
     
-    <div class="form-horizontal custom">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.IdNota)
+        <div class="form-horizontal custom">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.IdNota)
 
-    <div class="form-group">
-        @Html.Label("Aluno", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <span class="form-control">@Model.Aluno</span>
-            @Html.ValidationMessageFor(model => model.IdAluno, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("UFCD", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @*@Html.DropDownList("IdUFCD", null, new { @class = "form-control" })*@
-            <span class="form-control">@Model.UFCD.Designação</span>
-            @Html.ValidationMessageFor(model => model.IdUFCD, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Nota", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Nota1, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Nota1, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.CreateDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            @Html.Label("Aluno", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CreateDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreateDate, "", new { @class = "text-danger" })
+                <span class="form-control">@Model.Aluno</span>
+                @Html.ValidationMessageFor(model => model.IdAluno, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LastUpdate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("UFCD", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LastUpdate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastUpdate, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+                <span class="form-control">@Model.UFCD.Designação</span>
+                @Html.ValidationMessageFor(model => model.IdUFCD, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
+
+        <div class="form-group">
+            @Html.Label("Nota", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nota1, new
+            {
+                htmlAttributes = new
+                {
+                   @class = "form-control",
+                   @min = "1",
+                   @max = "20",
+                   @step = "1",
+                   @oninput = "(validity.valid) || (value = '');"
+                }
+            })
+                @Html.ValidationMessageFor(model => model.Nota1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
 }
 
 <div>

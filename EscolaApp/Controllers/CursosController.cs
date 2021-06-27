@@ -42,8 +42,16 @@ namespace EscolaApp.Controllers
                            on Cursos.IdCurso equals Referenciai.IdCurso
                            join UFCD in db.UFCDs
                            on Referenciai.IdUFCD equals UFCD.IdUFCD
+                           where Cursos.IdCurso == id
                            select UFCD.Duração;
-            ViewBag.Duracao = pesquisa.Sum();
+            if (pesquisa.Count() != 0)
+            {
+                ViewBag.Duracao = pesquisa.Sum() + " horas";
+            }
+            else
+            {
+                ViewBag.Duracao = "Ainda não tem UFCDs associadas";
+            }
             //Area area = db.Areas.FirstOrDefault(a => a.IdArea == curso.IdArea);
 
             ////utilização de um view bag para passar a informação sobre a que área o curso pertence

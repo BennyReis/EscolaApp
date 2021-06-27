@@ -93,6 +93,11 @@ namespace EscolaApp.Controllers
             Aluno aluno = db.Alunos.FirstOrDefault(a=>a.IdAluno == novaNota.IdAluno);
             UFCD ufcd = db.UFCDs.FirstOrDefault(u => u.IdUFCD == novaNota.IdUFCD);
 
+            
+            if (ufcd == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
             //verificar se a nota já existe, exceto a propria, para evitar ter dois ou mais registos do mesmo aluno para a mesma ufcd
             var duplicatedUfcds = db.Notas.Any(nota => nota.IdNota != novaNota.IdNota && ufcd.IdUFCD == nota.IdUFCD && aluno.IdAluno == nota.IdAluno);
 
